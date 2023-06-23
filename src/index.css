@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+* {
+  box-sizing: border-box;
+} 
+.custom-control-label {
+  font-weight: 400;
+}
+
+
+.sil-border-right {
+  border-right: 1px solid #eee;
+  box-sizing: border-box; /* Adjusting the box-sizing property to prevent horizontal scrollbar */
+}
+
+
+.full-height {
+  height: calc(100vh - 60px); /* Subtract the height of a 60px fixed element */
+  overflow: hidden; /* Hide the vertical scrollbar */
+}

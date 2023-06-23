@@ -1,0 +1,43 @@
+.slider-container {
+    background-color: #f1f1f1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:4rem !important;
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+.forgot-password a, .signup a {
+  color: #167bff;
+}
+
+.signup, .forgot-password {
+    width: 50%;
+    float: left;
+}
+
+.signup,
+.signup a {
+    font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+} 
