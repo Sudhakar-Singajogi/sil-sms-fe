@@ -17,7 +17,7 @@ const UserAuth = createSlice({
   },
   reducers: {
     setLogout: (state, action) => {
-        console.log('hey log out from here');
+      console.log("hey log out from here");
       state.school = {};
       state.user = {
         pending: true,
@@ -28,8 +28,8 @@ const UserAuth = createSlice({
         accessToken: "",
         refreshToken: "",
       };
-      state.accessibleFeatures =  [];
-    }
+      state.accessibleFeatures = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -44,18 +44,40 @@ const UserAuth = createSlice({
         state.user.error = "";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        const school = {
-          schoolId: action.payload.user.schoolId,
-          ...action.payload.user.school,
-        };
-        state.school = school;
-        state.tokens = {
-          accessToken: action.payload.accessToken,
-          refreshToken: action.payload.refreshToken,
-        };
-        state.accessibleFeatures = action.payload.accessibleFeatures;
-        state.user.error = "";
+        console.log('payload is:', action.payload)
+        if (
+          action.payload.message !== "" &&
+          action.payload.resultCode !== 200
+        ) {
+          state.user = {
+            pending: false,
+            data: {},
+            error: "",
+          };
+          const school = {  };
+          state.school = school;
+          state.tokens = {
+            accessToken: "",
+            refreshToken: "",
+          };
+          state.accessibleFeatures = '[]';
+          state.user.error = action.payload.message;
+        } else {
+          state.user = action.payload.user;
+          const school = {
+            schoolId: action.payload.user.schoolId,
+            ...action.payload.user.school,
+          };
+          state.school = school;
+          state.tokens = {
+            accessToken: action.payload.accessToken,
+            refreshToken: action.payload.refreshToken,
+          };
+          state.accessibleFeatures = action.payload.accessibleFeatures;
+          state.user.error = "";
+        }
+
+        console.log('state is:', state)
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.user = [];
@@ -86,23 +108,4 @@ export const loginUser = createAsyncThunk("user/login", async (data) => {
   const responseData = await response.json(); // Parse the response body as JSON
   //   console.log("response is:", responseData);
   return responseData;
-});
-
-
-/*
-export const setLogout = createAsyncThunk('user/logout', async(state, action) => {
-return {
-    school: {},
-    user: {
-      pending: true,
-      data: {},
-      error: "",
-    },
-    tokens: {
-      accessToken: "",
-      refreshToken: "",
-    },
-    accessibleFeatures: [],
-  }
-})
-*/
+}); 

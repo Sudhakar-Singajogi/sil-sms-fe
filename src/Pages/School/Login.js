@@ -32,21 +32,26 @@ function Login() {
 
 
 
-  if (user_Auth.user.userId > 0) {
+  if (user_Auth?.user.userId > 0) {
     return (
       <>
         <Dashboard />
       </>
     );
-  }
-  
+  } 
   return (
     <div className="row  full-height">
+      
       <div className="col-md-5 slider-container ">
         <h3 className="mt-3 ">SIL School Slider</h3>
       </div>
       <div className="col-md-7 form-container">
         <h3 className="mt-3">SIL School Login</h3>
+        {user_Auth.user.error.length>0 && 
+        <div class="alert alert-danger errmsg-div err-msg">
+          <strong>Success!</strong> Invalid credentials  
+        </div>
+} 
         <form className="col-md-8">
           <div className="mb-3 ">
             <input
@@ -77,7 +82,8 @@ function Login() {
           <div className="d-flex">
             <p className="signup">
               Register Here <Link to="/register-school">Signup</Link>
-            </p>
+            </p> 
+            
             <p className="forgot-password text-right">
               Forgot <Link to="/forgot-password">password?</Link>
             </p>

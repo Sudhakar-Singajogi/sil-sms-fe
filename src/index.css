@@ -127,3 +127,10 @@ code {
 .dropdown-toggle::after  {
   color: #fff !important;
 }
+
+
+.err-msg {
+  color: rgb(255, 0, 0) !important; 
+  font-size:15px !important
+}
+
